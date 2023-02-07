@@ -1,9 +1,9 @@
 import flet as ft
 from Colors import colors
-from HandleRequest import HandleRequest
+from Handlers import HandleRequest as hr
 from Cell import Cell
 
-Handler = HandleRequest()
+Handler = hr.HandleRequest()
 
 
 class EncapsulateApp(ft.UserControl):

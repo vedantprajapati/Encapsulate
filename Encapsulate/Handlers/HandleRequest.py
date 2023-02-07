@@ -1,6 +1,6 @@
-import HandleMessage as hm
-import HandleMessageError as hme
-
+import Handlers.HandleMessage as hm
+import Handlers.HandleMessageError as hme
+from Handlers.Command_Handlers.ClearHandler import route_clear
 
 class HandleRequest:
     def __init__(self):
@@ -11,9 +11,9 @@ class HandleRequest:
             "o": self.route_open,
             "open": self.route_open,
             "O": self.route_open,
-            "C": self.route_clear,
-            "c": self.route_clear,
-            "clear": self.route_clear,
+            "C": route_clear,
+            "c": route_clear,
+            "clear": route_clear,
             "exit": self.route_exit,
         }
 
@@ -55,29 +55,7 @@ class HandleRequest:
         else:
             return hme.error_open_link_not_found()
 
-    def route_clear(self, **kwargs):
-        cells = kwargs.get("kwargs").get("cells")
-        command = kwargs.get("kwargs").get("command")
 
-        if len(command.split(" ")) > 1:
-            if command.split(" ")[1] in ["f", "first", "F"]:
-                self.cell_delete_first(cells)
-            elif command.split(" ")[1] in ["l", "last", "L"]:
-                self.cell_delete_last(cells)
-            else:
-                self.clear_display(cells)
-        else:
-            self.clear_display(cells)
-        return ""
-
-    def cell_delete_first(self, cells):
-        cells.controls = self.cells.controls[1:]
-
-    def cell_delete_last(self, cells):
-        cells.controls = cells[:-1]
-
-    def clear_display(self, cells):
-        cells.controls = []
 
     #Close the page
     def route_exit(self, **kwargs):
