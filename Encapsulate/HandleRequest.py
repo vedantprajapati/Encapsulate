@@ -14,6 +14,7 @@ class HandleRequest:
             "C": self.route_clear,
             "c": self.route_clear,
             "clear": self.route_clear,
+            "exit": self.route_exit,
         }
 
         self.saved_links = {
@@ -77,3 +78,12 @@ class HandleRequest:
 
     def clear_display(self, cells):
         cells.controls = []
+
+    #Close the page
+    def route_exit(self, **kwargs):
+        page = kwargs.get("kwargs").get("page")
+        if page:
+            page.window_prevent_close=False
+            page.window_close()
+            page.update()
+        return ""
