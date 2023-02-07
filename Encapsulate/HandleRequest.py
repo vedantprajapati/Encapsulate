@@ -84,6 +84,5 @@ class HandleRequest:
         page = kwargs.get("kwargs").get("page")
         if page:
             page.window_prevent_close=False
-            page.window_close()
-            page.update()
+            page.window_destroy()
         return ""
