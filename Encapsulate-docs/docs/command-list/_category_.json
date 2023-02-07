@@ -1,0 +1,8 @@
+{
+  "label": "Command List",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "The following Commands are available"
+  }
+}

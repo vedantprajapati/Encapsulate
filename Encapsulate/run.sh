@@ -1,0 +1,1 @@
+flet run -p 8080 main.py
