@@ -6,8 +6,6 @@ def help_message():
                 - q (quercus)
                 - gpt (link to chat.openai.com)
                 - bank (link to td bank)
-                - email NUMBER/ALIAS
-                - bm(bookmark) NAME (links to a bookmarked website)
                 - yt (link to youtube)
                 - drive (link to google drive)
                 - docs  (link to google docs)

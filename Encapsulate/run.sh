@@ -1,1 +1,1 @@
-flet run -p 8080 main.py
+flet run -w -p 8560 main.py
