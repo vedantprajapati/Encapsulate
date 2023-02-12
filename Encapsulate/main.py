@@ -4,8 +4,6 @@ from EncapsulateApp import EncapsulateApp
 from setup import setup_encapsulate
 from oauth.google_oauth import get_google_oauth, save_user
 import os
-from flet.auth.providers.github_oauth_provider import GitHubOAuthProvider
-
 
 def main(page: ft.Page):
     def google_login_click(e):

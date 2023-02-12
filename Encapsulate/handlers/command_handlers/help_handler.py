@@ -1,7 +1,6 @@
 from ..helpers import markdown_to_string
 
 def route_help(**kwargs):
-    # TODO insert help logic here or in a different function
     help_routes = {
         "open": ["o", "open", "O"],
         "clear": ["c", "clear", "C"],
@@ -15,7 +14,6 @@ def route_help(**kwargs):
         else:
             return markdown_to_string(f"handlers/messages/help_messages/help_{key}_message.md")
     else:
-        my_str = markdown_to_string(f"handlers/messages/help_messages/help_message.md")
         return markdown_to_string(f"handlers/messages/help_messages/help_message.md")
 
 

@@ -1,37 +1,26 @@
-# Goal
+# About
 
-To create an application that allows users to:
-- view their google calendar
-- workout plan for the day
-- create todo lists
-    - simple ones
-- manage their daily habit tracking
-- visualize the habit tracking data
+Encapsulate is a CLI-based app that aims to help users manage their daily routines and tasks. It allows users to view their Google Calendar, create workout plans, to-do lists, and manage their habit tracking. The app also provides a way to visualize the habit tracking data. The interface of the app is inspired by Notion's UI and font.
 
-Create a react app?
+Documentation for this app can be found [here](INSERT_HOSTED_DOCUSAURUS_LINK_HERE)
+# Usage
 
-Menu is a cli that looks kind of like notion ui/font etc
+## Website
 
+The app is simple to use and can be found [here](INSERT_LINK_HERE)
+## Downloadable Application
 
------------------------------------------------
-Epsilon - COMMAND_HERE(i.e calendar)
------------------------------------------------
+The app can additionally be downloaded at any of the following platforms:
+### Windows
 
+INSERT_WINDOWS_LINK_HERE
 
-
+### Android
+INSERT_ANDROID_LINK_HERE
 
 
 
-FRAME OF INFORMATION HERE
-
-
-
-
-
-
-
--------------------------------------------------
-
+<!-- 
 Lists of commands
 
 
@@ -39,13 +28,13 @@ Lists of commands
     - List commands
 - /s, /start
     - register user with username/password
-    <!--- LATER provide the ability to register with google sso? maybe -->
 - /li,/login
     - username
     - password
 - /lo, /logout
 - /v, /view
     <!-- - LATER calendar (uses calendar api, not embed) not sure how much information it will require -->
+ <!--
     - todo
     - workout
     - weather
@@ -100,4 +89,4 @@ Lists of commands
     - cal
     - sheets
     - docs
-    - colab
+    - colab -->
