@@ -1,19 +1,19 @@
 import flet as ft
-from Colors import colors
+from colors import colors
 
 
 class Cell(ft.UserControl):
-    def __init__(self, command_name, cell_status_change, cell_delete):
+    def __init__(self, value, cell_status_change, cell_delete):
         super().__init__()
-        self.command_name = command_name
+        self.value = value
         self.cell_status_change = cell_status_change
         self.cell_delete = cell_delete
 
     def build(self):
         self.display_cell = ft.Container(
-            content=ft.Text(
-                value=self.command_name,
-                color=colors["BROWN"],
+            content=ft.Markdown(
+                value=self.value,
+                selectable=False,     
             ),
             alignment=ft.alignment.center,
             border_radius=0,
@@ -26,14 +26,9 @@ class Cell(ft.UserControl):
                 self.display_cell,
             ],
         )
+
         self.divider = ft.Divider(height=1, thickness=1, color=colors["BEIGE2"])
         return ft.Column(controls=[self.display_view, self.divider])
-
-    def edit_clicked(self, e):
-        self.edit_name.value = self.display_cell.label
-        self.display_view.visible = False
-        self.edit_view.visible = True
-        self.update()
 
     def save_clicked(self, e):
         self.display_cell.label = self.edit_name.value

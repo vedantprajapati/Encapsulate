@@ -1,5 +1,4 @@
 from ..HandleMessageError import error_open_link_not_found
-from ..HandleMessage import open_link_message
 
 saved_links = {
     "maps": "https://www.google.com/maps",
@@ -14,6 +13,8 @@ saved_links = {
     "s": "https://www.spotify.com/ca-en/",
 }
 
+def open_link_message(link):
+    return f"Opening link: {link}"
 
 def route_open(**kwargs):
     command = kwargs.get("kwargs").get("command")
@@ -21,9 +22,8 @@ def route_open(**kwargs):
     if len(command.split(" ")) > 1 and command.split(" ")[1] in saved_links:
         link = saved_links[command.split(" ")[1]]
         kwargs.get("kwargs").get("page").launch_url(url=link)
+        
         return open_link_message(link)
     else:
         return error_open_link_not_found()
-
-
 

@@ -1,6 +1,6 @@
 import flet as ft
-from Colors import colors
-from Handlers import HandleRequest as hr
+from colors import colors
+from handlers import HandleRequest as hr
 from Cell import Cell
 
 Handler = hr.HandleRequest()
@@ -17,7 +17,7 @@ class EncapsulateApp(ft.UserControl):
             helper_style=ft.TextStyle(color=colors["BROWN"]),
             border_color=colors["SLATE"],
             text_style=ft.TextStyle(color=colors["BROWN"]),
-            prefix_text="> /",
+            prefix_text="ε /",
             prefix_style=ft.TextStyle(color=colors["RED_ORANGE"]),
             cursor_color=colors["SLATE"],
             on_submit=self.call_command,
@@ -25,7 +25,7 @@ class EncapsulateApp(ft.UserControl):
             autofocus=True,
         )
 
-        self.cells = ft.Column()
+        self.output_stack = ft.Column()
 
         return ft.Column(
             controls=[
@@ -40,7 +40,7 @@ class EncapsulateApp(ft.UserControl):
                     spacing=25,
                     controls=[
                         # self.filter,
-                        self.cells,
+                        self.output_stack,
                         ft.Row(
                             alignment="spaceBetween",
                             vertical_alignment="center",
@@ -54,13 +54,15 @@ class EncapsulateApp(ft.UserControl):
     def call_command(self, e):
         if self.CLI.value:
             cell_output_value = Handler.route_command(
-                command=self.CLI.value, page=self._Control__page, cells=self.cells
+                command=self.CLI.value,
+                page=self._Control__page,
+                cells=self.output_stack,
             )
             if self.CLI.value.split(" ")[0] not in ["c", "clear", "C"]:
                 cell = Cell(
                     cell_output_value, self.cell_status_change, self.cell_delete
                 )
-                self.cells.controls.insert(0, cell)
+                self.output_stack.controls.insert(0, cell)
             self.CLI.value = ""
             self.CLI.focus()
             self.update()
@@ -69,11 +71,11 @@ class EncapsulateApp(ft.UserControl):
         self.update()
 
     def cell_delete(self, task):
-        self.cells.controls.remove(task)
+        self.output_stack.controls.remove(task)
         self.update()
 
     def clear_display(self, e):
-        for cell in self.cells.controls[:]:
+        for cell in self.output_stack.controls[:]:
             self.cell_delete(cell)
 
     def update(self):

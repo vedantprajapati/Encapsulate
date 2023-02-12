@@ -1,5 +1,6 @@
-from Colors import colors
+from colors import colors
 import flet as ft
+
 
 def setup_encapsulate(page):
     page.title = "Encapsulate"

@@ -18,7 +18,7 @@ def cell_delete_first(cells):
     cells.controls = cells.controls[1:]
 
 def cell_delete_last(cells):
-    cells.controls = cells[:-1]
+    cells.controls = cells.controls[:-1]
 
 def clear_display(cells):
     cells.controls = []
