@@ -5,7 +5,7 @@ def route_help(**kwargs):
         "open": ["o", "open", "O"],
         "clear": ["c", "clear", "C"],
     }
-    command = kwargs["kwargs"]["command"]
+    command = kwargs["command"]
     if len(command.split(" "))>1:
         secondarg = command.split(" ")[1]
         for key in help_routes:

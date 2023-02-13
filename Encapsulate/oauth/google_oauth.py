@@ -19,6 +19,7 @@ def google_get_user(page):
         "g_email": page.client_storage.get("g_email"),
         "g_name": page.client_storage.get("g_name"),
         # "g_id": page.client_storage.get("id"),
+        "token": page.client_storage.get("token"),
         "provider": "google",
     }
 
@@ -26,7 +27,10 @@ def google_get_user(page):
 def save_user(page):
     page.client_storage.set("g_email", page.auth.user.get("email"))
     page.client_storage.set("g_name", page.auth.user.get("name"))
-
+    try:
+        page.client_storage.set("token", page.auth.token.access_token)
+    except:
+        print("No token found")
 
 def get_google_oauth(page, google_login_click, get_user=google_get_user):
     welcome_user = ft.Text(value="", visible=False)

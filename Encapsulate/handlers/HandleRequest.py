@@ -1,5 +1,5 @@
 import handlers.HandleMessageError as hme
-from handlers.command_handlers import open_handler, help_handler, clear_handler, exit_handler
+from handlers.command_handlers import open_handler, help_handler, clear_handler, exit_handler, profile_handler  
 class HandleRequest:
     def __init__(self):
         self.commands = {
@@ -7,6 +7,7 @@ class HandleRequest:
             ("o", "open", "O"): open_handler.route_open,
             ("C", "c", "clear"): clear_handler.route_clear,
             ("exit",): exit_handler.route_exit,
+            ("profile", "p", "P"): profile_handler.route_profile,
         }
 
     def route_command(self, **kwargs):
@@ -16,6 +17,6 @@ class HandleRequest:
         if not route and command is not None:
             return hme.error_command_not_found()
         elif route:
-            return route(kwargs=kwargs)
+            return route(**kwargs)
         else:
             return ""
