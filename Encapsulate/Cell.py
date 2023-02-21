@@ -13,7 +13,10 @@ class Cell(ft.UserControl):
         self.display_cell = ft.Container(
             content=ft.Markdown(
                 value=self.value,
-                selectable=False,     
+                selectable=False,       
+                extension_set=ft.MarkdownExtensionSet.GITHUB_WEB,
+                code_theme="atom-one-dark",
+                code_style=ft.TextStyle(font_family="Roboto Mono"),
             ),
             alignment=ft.alignment.center,
             border_radius=0,

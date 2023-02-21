@@ -24,6 +24,10 @@ def google_get_user(page):
     }
 
 
+def has_token(page):
+    if hasattr(page.auth,"token") and page.auth.token is not None:
+        return page.client_storage.get("token") is not None
+
 def save_user(page):
     page.client_storage.set("g_email", page.auth.user.get("email"))
     page.client_storage.set("g_name", page.auth.user.get("name"))

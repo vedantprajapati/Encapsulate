@@ -1,7 +1,7 @@
 
 def route_clear(**kwargs):
-    cells = kwargs.get("kwargs").get("cells")
-    command = kwargs.get("kwargs").get("command")
+    cells = kwargs.get("cells")
+    command = kwargs.get("command")
 
     if len(command.split(" ")) > 1:
         if command.split(" ")[1] in ["f", "first", "F"]:

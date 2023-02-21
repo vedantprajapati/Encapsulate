@@ -2,7 +2,7 @@ import flet as ft
 from colors import colors
 from EncapsulateApp import EncapsulateApp
 from setup import setup_encapsulate
-from oauth.google_oauth import get_google_oauth, save_user
+from oauth.google_oauth import get_google_oauth, save_user, google_get_user, has_token
 import os
 
 def main(page: ft.Page):
@@ -15,7 +15,7 @@ def main(page: ft.Page):
         print("User logged in: " + page.auth.user.get("email"))
         save_user(page)
         if page.client_storage.get("g_name") is not None and welcome_user.value == "":
-            welcome_user.value = "Welcome, " + page.client_storage.get("g_name")
+            welcome_user.value = "Welcome, " + page.auth.user.get('name')
         google_oauth_button.visible = False
         welcome_user.visible = True
         page.update()
@@ -28,6 +28,12 @@ def main(page: ft.Page):
         "google": google_provider,
     }
     page.on_login = on_login
+
+    if google_get_user(page)["g_name"] is not None and has_token(page):
+        welcome_user.value = "Welcome, " + page.auth.user.get('name')
+        google_oauth_button.visible = False
+        welcome_user.visible = True
+        
     login_bar = ft.Row(controls=[welcome_user, google_oauth_button])
 
     page.add(login_bar)
