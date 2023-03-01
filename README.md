@@ -1,6 +1,6 @@
 # About
 
-Encapsulate is a CLI-based app that aims to help users manage their daily routines and tasks. It allows users to view their Google Calendar, create workout plans, to-do lists, and manage their habit tracking. The app also provides a way to visualize the habit tracking data. The interface of the app is inspired by Nier Automata.
+Encapsulate is a CLI-based app that aims to help users manage their daily routines and tasks. It allows users to view their Google Calendar, create workout plans, and to-do lists, and manage their habit tracking. The app also provides a way to visualize the habit-tracking data. The interface of the app is inspired by Nier Automata.
 
 Documentation for this app can be found [here](INSERT_HOSTED_DOCUSAURUS_LINK_HERE)
 # Usage
@@ -19,7 +19,6 @@ INSERT_WINDOWS_LINK_HERE
 
 ### Android
 INSERT_ANDROID_LINK_HERE
-
 
 
 <!-- 
