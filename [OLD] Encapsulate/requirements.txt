@@ -1,0 +1,4 @@
+flet
+pyinstaller
+setuptools
+python-dotenv

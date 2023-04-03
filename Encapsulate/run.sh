@@ -1,1 +1,0 @@
-flet run -w -p 8560 main.py
