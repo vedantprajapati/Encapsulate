@@ -2,7 +2,7 @@
 
 ```bash
 source ./venv/bin/activate
-flask --app App.py run
+flask --app index.py run
 ```
 
 # Installing necessary Packages
