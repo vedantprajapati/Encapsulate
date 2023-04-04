@@ -9,11 +9,11 @@ CORS(app)
 def home():
     return "ok"
 
-@app.route('/api/get_topics')
+@app.route('/get_topics')
 def get_topics():
     return {"topics": ["topic1", "other stuff", "next topic"]}
 
-@app.route('/api/submit_question', methods=["POST"])
+@app.route('/submit_question', methods=["POST"])
 def submit_question():
     question = json.loads(request.data)["question"]
     return {"answer": f"You Q was {len(question)} chars long"}
