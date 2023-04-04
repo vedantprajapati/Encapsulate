@@ -1,32 +1,69 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import axios from 'axios';
 import './App.css';
-import React, { useEffect, useState } from 'react';
-import axios from 'axios'
 
-function App() {
-  const [getMessage, setGetMessage] = useState({})
+class App extends Component {
+  state = {
+    topics: ["Loading..."],
+    question: "",
+    answer: ""
+  }
 
-  useEffect(()=>{
-    axios.get('http://localhost:5000/flask/hello').then(response => {
-      console.log("SUCCESS", response)
-      setGetMessage(response)
-    }).catch(error => {
-      console.log(error)
-    })
+  componentDidMount() {
+    this.fetchTopics()
 
-  }, [])
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>React + Flask Tutorial</p>
-        <div>{getMessage.status === 200 ? 
-          <h3>{getMessage.data.message}</h3>
-          :
-          <h3>LOADING</h3>}</div>
-      </header>
-    </div>
-  );
+  }
+
+  fetchTopics = async () => {
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_API_URL}/get_topics`,
+    );
+    const { topics } = data;
+    this.setState({topics})
+  }
+
+  handleChange = (event) => {
+    this.setState({question: event.target.value});
+  }
+
+  handleSubmit = (event) => {
+    this.fetchAnswer();
+    event.preventDefault();
+  }
+
+  fetchAnswer = async () => {
+    const { question } = this.state;
+    const { data } = await axios.post(
+      `${process.env.REACT_APP_API_URL}/submit_question`, { question }
+    );
+    const { answer } = data;
+    this.setState({answer})
+  }
+
+  render() {
+    const { topics, question, answer } = this.state;
+    return (
+      <div className="App">
+        <header className="App-header">
+        <h1>List of topics to ask a question on</h1>
+        <ul>
+          {topics.map(topic => (<li key={topic}>{topic}</li>))}
+        </ul>
+          <form onSubmit={this.handleSubmit}>
+          <label>
+            Question:
+            <input type="text" value={question} onChange={this.handleChange} />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
+        <h1>Answer: {answer}</h1>
+        </header>
+      </div>
+    );
+  }
 }
 
 export default App;
+
+
+
