@@ -13,6 +13,15 @@ const StyledTerminal = styled.div`
   alignitems: "center";
 `;
 
+const StyledFooter = styled.footer`
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  font-size: 14px;
+  color: #c4c4c4;
+  padding: 10px;
+`;
+
 const StyledPrompt = styled.span`
   color: #a5a58d;
 `;
@@ -31,7 +40,7 @@ const TerminalContainer = () => {
       `${process.env.REACT_APP_API_URL}/api/commands/${inputValue}`
     );
     const data = await response.text();
-    console.log(data);
+
     if (response.status === 404) {
       setOutputValue("Command not found");
     } else {
@@ -42,14 +51,12 @@ const TerminalContainer = () => {
           </h3>
         );
       } else if (inputValue === "help") {
-        setOutputValue(
-            data
-        );
-      }
-      else {
+        setOutputValue(data);
+      } else if (inputValue === "ritu") {
+        setOutputValue(<h1>{data}</h1>);
+      } else {
         setOutputValue("Command not found");
       }
-
     }
     setInputValue("");
   };
@@ -81,6 +88,9 @@ const TerminalContainer = () => {
         </form>
       </div>
       <div style={{ color: "#c4c4c4" }}>{outputValue}</div>
+      <StyledFooter>
+        © {new Date().getFullYear()} | Vedant Prajapati
+      </StyledFooter>
     </StyledTerminal>
   );
 };

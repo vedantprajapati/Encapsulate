@@ -43,6 +43,20 @@ def command_map():
     return jsonify(response)
 
 
+@app.route('/api/commands/ritu')
+def command_special():
+    # data = request.get_json()
+    # print(data)
+    # cmd = data.get('cmd')
+    cmd = request.args.get('cmd')
+    # Here you can do any processing of the command that you need to do
+    # For example, you might want to sanitize the command to prevent injection attacks
+    # You can also execute the command on the server, and return the output to the client
+    # For now, let's just return a response with the command that was received
+    print(f"Secret Command! I LOVE YOU RITU!")
+    response = f'Secret Command! I LOVE YOU RITU!'
+    return jsonify(response)
+
 if __name__ == '__main__':
     app.run(port=8080)
 
